@@ -1,0 +1,67 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Jogar Fase 1 {% endblock %} 
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+{% if grupo %}
+
+    <div class="col-12 px-0 mb-4">   <!-- Indicação de qual é o GRUPO" -->
+        <div class="mb-4">
+            <label class="fs-4 fw-extrabold mb-0">{{ grupo.Nome }} - Fase {{ fase }}</label>
+        </div>
+    </div>
+
+    <div class="row mt-4 mb-2">
+        <div class="col-12 px-0 text-center">
+            <label class="fs-4 fw-bold mb-0">Instruções ao seu operador:</label>
+        </div>
+    </div>
+    
+    <div class="row mb-8">     <!-- Formulario p/ editar QUANDO e QUANTO -->
+        <form action="{% url 'jogovarejo:salvaMetodo' %}" method="post">
+            {% csrf_token %}
+            <fieldset>
+                <div class="row">
+                    <div class="col-12 col-xl-6 my-4">   <!-- QUANDO E QUANTO COMPRAR -->
+                        <label for="quando">Quando comprar</label>
+                        <textarea class="form-control" name="quando" id="quando" rows="6" style="font-size: 18px" required>{{ grupo.Quando }}</textarea>
+                    </div>
+                    <div class="col-12 col-xl-6 my-4">
+                        <label for="quanto">Quanto comprar</label>
+                        <textarea class="form-control" name="quanto" id="quanto" rows="6" style="font-size: 18px" required>{{ grupo.Quanto }}</textarea>
+                    </div>
+                    <input type="hidden" name="numGrupo" value="{{ grupo.Numero }}">
+                    {% if fase == 1 or request.user.username == "professor" %}
+                        <div class="col-12 col-xl-6">
+                            <input class="btn btn-dark" type="submit" value="Salvar" style="color: #ffffff; background-color: #262B40">
+                        </div>
+                    {% endif %}
+                </div>
+            </fieldset>
+        </form>
+        <div class="row mt-2">
+            {% if messages %}
+                <div class="messages">
+                    {% for message in messages %}
+                        <!--  <div {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</div>-->
+                        {% if message.tags == "success" %} <div class ="h5" style="color: green">{{ message }}</div> {% endif %}
+                        {% if message.tags == "error" %}   <div class ="h5" style="color: red"  >{{ message }}</div> {% endif %}
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+    </div>
+
+{% else %}
+    <p>Não existe o item.</p>
+{% endif %}
+
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}

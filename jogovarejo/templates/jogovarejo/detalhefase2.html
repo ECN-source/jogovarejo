@@ -1,0 +1,217 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Jogar Fase 2 {% endblock %} 
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+{% if grupo %} <!-- "grupo" é o grupo operador-->
+
+    <div class="col-12 px-0 mb-4">   <!-- Indicação de qual é o GRUPO" -->
+        <div class="mb-4">
+            <label class="fs-4 fw-extrabold mb-0">{{ grupo.Nome }} - Fase {{ fase }}</label>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-12 col-xl-5">
+            {% if grupo.Fase2DoGrupoComoOperadorOk == False %} <!-- "grupo" é o grupo operador-->
+            <div class="row mb-2">    <!-- Titulo "Situação corrente" -->
+                <div class="col-12 px-0 text-center">
+                    <label class="fs-4 fw-bold mb-0">Situação corrente:</label>
+                </div>
+            </div>
+            <div class="col-12 px-0 mb-4">
+                <div class="card border-0 shadow">   <!-- Card "MOVIMENTAÇÃO" -->
+                    <div class="card-header border-bottom d-flex align-items-center justify-content-between"> <!-- "DIA CORRENTE" -->
+                        <h2 class="fs-5 fw-bold mb-0">
+                            Dia
+                            <span class="fs-5 fw-extrabold mb-0">{{ moviDeHoje.Dia }}</span>
+                        </h2>
+                    </div>
+                    <div class="card-body">
+                        <div class="d-flex align-items-center justify-content-between border-bottom pb-3">  <!-- "Saldo anterior" -->
+                            <div>
+                                <div class="h6 mb-0 d-flex align-items-center">
+                                    <svg class="icon icon-xs text-gray-500 me-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M6 .278a.77.77 0 0 1 .08.858 7.2 7.2 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277q.792-.001 1.533-.16a.79.79 0 0 1 .81.316.73.73 0 0 1-.031.893A8.35 8.35 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.75.75 0 0 1 6 .278"/>
+                                        <path d="M10.794 3.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387a1.73 1.73 0 0 0-1.097 1.097l-.387 1.162a.217.217 0 0 1-.412 0l-.387-1.162A1.73 1.73 0 0 0 9.31 6.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387a1.73 1.73 0 0 0 1.097-1.097zM13.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.16 1.16 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.16 1.16 0 0 0-.732-.732l-.774-.258a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732z"/>
+                                    </svg>
+                                    Saldo anterior
+                                </div>
+                                <div class="small card-stats">
+                                    Ontem de noite
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center fw-bold" style="white-space: nowrap">  <!-- Inserido "nowrap" p/impedir quebra em 2 linhas-->
+                                {{ moviDeHoje.SaldoFinalAnterior }}
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-between border-bottom py-3">  <!-- "Recebido" -->
+                            <div>
+                                <div class="h6 mb-0 d-flex align-items-center">
+                                    <svg class="icon icon-xs text-gray-500 me-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0z"/>
+                                        <path fill-rule="evenodd" d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708z"/>
+                                    </svg>
+                                    Recebido
+                                </div>
+                                <div class="small card-stats">
+                                    De manha
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center fw-bold" style="white-space: nowrap">  <!-- Inserido "nowrap" p/impedir quebra em 2 linhas-->
+                                {{ moviDeHoje.Recebido }}
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-between border-bottom py-3">  <!-- "A receber" -->
+                            <div>
+                                <div class="h6 mb-0 d-flex align-items-center">
+                                    <svg class="icon icon-xs text-gray-500 me-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                                        <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"/>
+                                    </svg>
+                                    A receber
+                                </div>
+                                <div class="small card-stats">
+                                    Só amanhã
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center fw-bold" style="white-space: nowrap">  <!-- Inserido "nowrap" p/impedir quebra em 2 linhas-->
+                                {{ moviDeHoje.AReceber }}
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-between pt-3">  <!-- "Saldo inicial" -->
+                            <div>
+                                <div class="h6 mb-0 d-flex align-items-center">
+                                    <svg class="icon icon-xs text-gray-500 me-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M8 3a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 3m8 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5m-13.5.5a.5.5 0 0 0 0-1h-2a.5.5 0 0 0 0 1zm11.157-6.157a.5.5 0 0 1 0 .707l-1.414 1.414a.5.5 0 1 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0m-9.9 2.121a.5.5 0 0 0 .707-.707L3.05 5.343a.5.5 0 1 0-.707.707zM8 7a4 4 0 0 0-4 4 .5.5 0 0 0 .5.5h7a.5.5 0 0 0 .5-.5 4 4 0 0 0-4-4"/>
+                                    </svg>
+                                    Saldo inicial 
+                                </div>
+                                <div class="small card-stats">
+                                    De manhã
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center fw-bold" style="white-space: nowrap">  <!-- Inserido "nowrap" p/impedir quebra em 2 linhas-->
+                                {{ moviDeHoje.SaldoInicial }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 px-0 mb-4">
+                <div class="mb-4">   <!-- Form "NOVA COMPRA" -->
+                    <label class="fs-5 fw-bold mb-0" for="novaCompra">Nova compra</label>
+                    {% if messages %}    <!-- Exibição de mensagem ao usuário posterior à edição  -->
+                        <div class="messages">
+                            {% for message in messages %}
+                                {% if message.tags == "success" %} <div class ="h6" style="color: green">{{ message }}</div> {% endif %}
+                                {% if message.tags == "error" %}   <div class ="h6" style="color: red"  >{{ message }}</div> {% endif %}
+                                <!--  <div {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</div>-->
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                    <form method="POST" action="{% url 'jogovarejo:avancaUmDia' %}">
+                        {% csrf_token %}
+                        <input type="number" min="0" class="form-control is-invalid" id="novaCompra" name="novaCompra" value="{{ moviDeHoje.Comprado|default:'' }}" required autofocus>
+                        <input type="hidden" name="numGrupo" value="{{ grupo.Numero }}"> <!-- "grupo" é o grupo operador-->
+                        <input type="hidden" name="diaCorrenteNaEstacao" value="{{ moviDeHoje.Dia }}">
+                        <div class="invalid-feedback">
+                            Por favor digite a quantidade.
+                        </div>
+                    </form>
+                </div>
+            </div>
+            {% else %}
+                <div class ="h6" style="color: green">
+                    <p></p>
+                    <p class="lead">Simulação concluida! Voce já pode iniciar a "Fase 3", começando a avaliar os resultados da simulação do uso do seu sistema pelo seu operador.</p>
+                </div>
+            {% endif %}
+
+            {% if grupo.DiaCorrenteDoGrupoComoOperador > 1 %}
+            <div class="col-12 col-xl-6">
+                <form method="post" action="{% url 'jogovarejo:retrocedeUmdia' %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="numGrupo" value="{{ grupo.Numero }}"> <!-- "grupo" é o grupo operador-->
+                    <input class="btn btn-dark" type="submit" value="Retroceder 1 dia" style="color: #ffffff; background-color: #262B40">
+                </form>
+            </div>
+            {% endif %}
+
+        </div>
+        <div class="col-12 col-xl-7">  <!-- QUANDO E QUANTO COMPRAR -->
+            <div class="row mb-2">
+                <div class="col-12 px-0 text-center">
+                    <label class="fs-4 fw-bold mb-0">Instruções do seu gerente:</label>
+                </div>
+            </div>
+            <div class="my-4">
+                <label for="textarea">Quando comprar</label>
+                <textarea class="form-control" placeholder="{{ grGerente.Quando }}" id="textarea" rows="6" style="font-size: 18px"></textarea>
+            </div>
+            <div class="my-4">
+                <label for="textarea">Quanto comprar</label>
+                <textarea class="form-control" placeholder="{{ grGerente.Quanto }}" id="textarea" rows="6" style="font-size: 18px"></textarea>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-12 mt-2 mb-8">
+        <div class="card border-light shadow-sm">    <!-- HISTÓRICO -->
+            <div class="card-header">    <!-- Título -->
+                <div class="row align-items-center">
+                    <div class="col text-center">
+                        <h2 class="h4"><b>Histórico</b></h2>
+                    </div>
+                </div>
+            </div>
+            <div class="table-responsive">
+                <table class="table align-items-center table-flush">
+                    <thead class="thead-light">    <!-- Cabeçalho da tabela" -->
+                        <tr>
+                            <th scope="col" style="text-align: left">Dia</th>
+                            <th scope="col" style="text-align: right">Recebido</th>
+                            <th scope="col" style="text-align: right">Saldo<br>Inicial</th>
+                            <th scope="col" style="text-align: right">A<br>Receber</th>
+                            <th scope="col" style="text-align: right">Quant<br>Compra</th>
+                            <th scope="col" style="text-align: right">Prazo</th>
+                            <th scope="col" style="text-align: right">Demanda</th>
+                            <th scope="col" style="text-align: right">Vendido</th>
+                            <th scope="col" style="text-align: right">Saldo<br>Final</th>
+                            <th scope="col" style="text-align: right">Estoque<br>Médio</th>
+                        </tr>
+                    </thead>
+                    <tbody>                         <!-- Corpo da tabela" -->
+                        {% for umDia in historico %}
+                            <tr>
+                                <th scope="row" style="text-align: left">{{ umDia.Dia }}</th>
+                                <td style="text-align: right">{{ umDia.Recebido }}</td>
+                                <td style="text-align: right">{{ umDia.SaldoInicial }}</td>
+                                <td style="text-align: right">{{ umDia.AReceber }}</td>
+                                <td style="text-align: right">{{ umDia.Comprado      | default_if_none:'' }}</td>
+                                <td style="text-align: right">{{ umDia.Prazo         | default_if_none:'' }}</td>
+                                <td style="text-align: right">{{ umDia.Demanda       | default_if_none:'' }}</td>
+                                <td style="text-align: right">{{ umDia.Vendido       | default_if_none:'' }}</td>
+                                <td style="text-align: right">{{ umDia.SaldoFinal    | default_if_none:'' }}</td>
+                                <td style="text-align: right">{{ umDia.SaldoMedioDia | default_if_none:'' }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+{% else %}
+    <p>Não existe o item.</p>
+{% endif %}
+
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}

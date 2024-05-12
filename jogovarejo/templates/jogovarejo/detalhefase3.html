@@ -1,0 +1,491 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Jogar Fase 3 {% endblock %} 
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+{% if grupo %} <!-- "grupo" é o grupo operador-->
+
+    <div class="col-12 px-0 mb-4">   <!-- Indicação de qual é o GRUPO" -->
+        <div class="mb-4">
+            <label class="fs-4 fw-extrabold mb-0">{{ grupo.Nome }} - Fase {{ fase }}</label>
+        </div>
+    </div>
+
+    <div class="row mb-2">    <!-- Titulo "Situação corrente" -->
+        <div class="col-12 px-0 text-center">
+            <label class="fs-4 fw-bold mb-0">Indicadores para Avaliação:</label>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-12 col-xl-4">
+            <div class="col-12 px-0 mb-4">
+                <div class="card border-0 shadow">   <!-- Card "DADOS DA SIMULAÇÃO" -->
+                    <div class="card-header border-bottom d-flex align-items-center justify-content-between"> <!-- Titulo -->
+                        <h2 class="fs-5 fw-bold mb-0">
+                            Dados da Simulação
+                        </h2>
+                    </div>
+                    <div class="card-body">
+                        <div class="d-flex align-items-center justify-content-between border-bottom pb-3">  <!-- "Duração" -->
+                            <div>
+                                <div class="h6 mb-0 d-flex align-items-center">
+                                    Duração
+                                </div>
+                                <div class="small card-stats">
+                                    (Dias)
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center fw-bold" style="white-space: nowrap">  <!-- Inserido "nowrap" p/impedir quebra em 2 linhas-->
+                                {{ grupo.Duracao }}
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-between border-bottom py-3">  <!-- "Demanda total" -->
+                            <div>
+                                <div class="h6 mb-0 d-flex align-items-center">
+                                    Demanda total
+                                </div>
+                                <div class="small card-stats">
+                                    (Peças)
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center fw-bold" style="white-space: nowrap">  <!-- Inserido "nowrap" p/impedir quebra em 2 linhas-->
+                                {{ grupo.DemandaTotal }}
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-between border-bottom py-3">  <!-- "Demanda Média" -->
+                            <div>
+                                <div class="h6 mb-0 d-flex align-items-center">
+                                    Demanda média
+                                </div>
+                                <div class="small card-stats">
+                                    (Peças / dia)
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center fw-bold" style="white-space: nowrap">  <!-- Inserido "nowrap" p/impedir quebra em 2 linhas-->
+                                {{ grupo.DemandaMedia }}
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-between pt-3">  <!-- "Tempo médio de reposição" -->
+                            <div>
+                                <div class="h6 mb-0 d-flex align-items-center">
+                                    Tempo médio de reposição 
+                                </div>
+                                <div class="small card-stats">
+                                    (Dias)
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center fw-bold" style="white-space: nowrap">  <!-- Inserido "nowrap" p/impedir quebra em 2 linhas-->
+                                {{ grupo.TRMedio }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-xl-4">
+            <div class="col-12 px-0 mb-4">
+                <div class="card border-0 shadow">   <!-- Card "ATENDIMENTO AOS CLIENTES" -->
+                    <div class="card-header border-bottom d-flex align-items-center justify-content-between"> <!-- Título -->
+                        <h2 class="fs-5 fw-bold mb-0">
+                            Atendimento aos clientes
+                        </h2>
+                    </div>
+                    <div class="card-body">
+                        <div class="d-flex align-items-center justify-content-between border-bottom pb-3">  <!-- "Clientes atendidos" -->
+                            <div>
+                                <div class="h6 mb-0 d-flex align-items-center">
+                                    Clientes atendidos
+                                </div>
+                                <div class="small card-stats">
+                                    (Unidades)
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center fw-bold" style="white-space: nowrap">  <!-- Inserido "nowrap" p/impedir quebra em 2 linhas-->
+                                {{ grupo.ClientesAtendidos }}
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-between border-bottom py-3">  <!-- "Ganho realizado" -->
+                            <div>
+                                <div class="h6 mb-0 d-flex align-items-center">
+                                    Ganho realizado
+                                </div>
+                                <div class="small card-stats">
+                                    ($)
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center fw-bold" style="white-space: nowrap">  <!-- Inserido "nowrap" p/impedir quebra em 2 linhas-->
+                                {{ grupo.Ganho }}
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-between border-bottom py-3">  <!-- "Clientes perdidos" -->
+                            <div>
+                                <div class="h6 mb-0 d-flex align-items-center">
+                                    Clientes perdidos
+                                </div>
+                                <div class="small card-stats">
+                                    (Unidades)
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center fw-bold" style="white-space: nowrap">  <!-- Inserido "nowrap" p/impedir quebra em 2 linhas-->
+                                {{ grupo.ClientesPerdidos }}
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-between border-bottom py-3">  <!-- "Ganho Perdido" -->
+                            <div>
+                                <div class="h6 mb-0 d-flex align-items-center">
+                                    Ganho Perdido 
+                                </div>
+                                <div class="small card-stats">
+                                    ($)
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center fw-bold" style="white-space: nowrap">  <!-- Inserido "nowrap" p/impedir quebra em 2 linhas-->
+                                {{ grupo.GanhoPerdido }}
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-between pt-3">  <!-- "Nível de serviço ao cliente" -->
+                            <div>
+                                <div class="h6 mb-0 d-flex align-items-center">
+                                    Nível de serviço ao cliente
+                                </div>
+                                <div class="small card-stats">
+                                    (%)
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center fw-bold" style="white-space: nowrap">  <!-- Inserido "nowrap" p/impedir quebra em 2 linhas-->
+                                {{ grupo.NivelServicoCliente }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-xl-4">
+            <div class="col-12 px-0 mb-4">
+                <div class="card border-0 shadow">   <!-- Card "ESTOQUE MEDIO" -->
+                    <div class="card-header border-bottom d-flex align-items-center justify-content-between"> <!-- "Titulo" -->
+                        <h2 class="fs-5 fw-bold mb-0">
+                            Estoque Médio
+                        </h2>
+                    </div>
+                    <div class="card-body">
+                        <div class="d-flex align-items-center justify-content-between border-bottom pb-3">  <!-- "Estoque médio" -->
+                            <div>
+                                <div class="h6 mb-0 d-flex align-items-center">
+                                    Estoque médio
+                                </div>
+                                <div class="small card-stats">
+                                    (Unidades)
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center fw-bold" style="white-space: nowrap">  <!-- Inserido "nowrap" p/impedir quebra em 2 linhas-->
+                                {{ grupo.EstoqueMedio }}
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-between border-bottom py-3">  <!-- "Cobertura do estoque médio" -->
+                            <div>
+                                <div class="h6 mb-0 d-flex align-items-center">
+                                    Cobertura do estoque médio
+                                </div>
+                                <div class="small card-stats">
+                                    (Dias)
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center fw-bold" style="white-space: nowrap">  <!-- Inserido "nowrap" p/impedir quebra em 2 linhas-->
+                                {{ grupo.CoberturaEstoqueMedio }}
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-between border-bottom py-3">  <!-- "Capital médio em estoque" -->
+                            <div>
+                                <div class="h6 mb-0 d-flex align-items-center">
+                                    Capital médio em estoque
+                                </div>
+                                <div class="small card-stats">
+                                    ($)
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center fw-bold" style="white-space: nowrap">  <!-- Inserido "nowrap" p/impedir quebra em 2 linhas-->
+                                {{ grupo.CapitalEstoqueMedio }}
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-between border-bottom py-3">  <!-- "Custo de estocar no período" -->
+                            <div>
+                                <div class="h6 mb-0 d-flex align-items-center">
+                                    Custo de estocar no período
+                                </div>
+                                <div class="small card-stats">
+                                    ($)
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center fw-bold" style="white-space: nowrap">  <!-- Inserido "nowrap" p/impedir quebra em 2 linhas-->
+                                {{ grupo.CustoEstocar }}
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-between pt-3">  <!-- "Giro" -->
+                            <div>
+                                <div class="h6 mb-0 d-flex align-items-center">
+                                    Giro
+                                </div>
+                                <div class="small card-stats">
+                                    (vezes/ano)
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center fw-bold" style="white-space: nowrap">  <!-- Inserido "nowrap" p/impedir quebra em 2 linhas-->
+                                {{ grupo.Giro }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-12 col-xl-4">
+            <div class="col-12 px-0 mb-4">
+                <div class="card border-0 shadow">   <!-- Card "ESTOUE MÁXIMO" -->
+                    <div class="card-header border-bottom d-flex align-items-center justify-content-between"> <!-- "Titulo" -->
+                        <h2 class="fs-5 fw-bold mb-0">
+                            Estoque máximo
+                        </h2>
+                    </div>
+                    <div class="card-body">
+                        <div class="d-flex align-items-center justify-content-between border-bottom pb-3">  <!-- "Estoque máximo" -->
+                            <div>
+                                <div class="h6 mb-0 d-flex align-items-center">
+                                    Estoque máximo
+                                </div>
+                                <div class="small card-stats">
+                                    (Unidades)
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center fw-bold" style="white-space: nowrap">  <!-- Inserido "nowrap" p/impedir quebra em 2 linhas-->
+                                {{ grupo.EstoqueMaximo }}
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-between border-bottom py-3">  <!-- "Cobertura estoque máximo" -->
+                            <div>
+                                <div class="h6 mb-0 d-flex align-items-center">
+                                    Cobertura estoque máximo
+                                </div>
+                                <div class="small card-stats">
+                                    (Dias)
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center fw-bold" style="white-space: nowrap">  <!-- Inserido "nowrap" p/impedir quebra em 2 linhas-->
+                                {{ grupo.CoberturaEstoqueMaximo }}
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-between pt-3">  <!-- "Capital estoque máximo" -->
+                            <div>
+                                <div class="h6 mb-0 d-flex align-items-center">
+                                    Capital estoque máximo
+                                </div>
+                                <div class="small card-stats">
+                                    ($)
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center fw-bold" style="white-space: nowrap">  <!-- Inserido "nowrap" p/impedir quebra em 2 linhas-->
+                                {{ grupo.CapitalEstoqueMaximo }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-xl-4">
+            <div class="col-12 px-0 mb-4">
+                <div class="card border-0 shadow">   <!-- Card "SUPRIMENTOS" -->
+                    <div class="card-header border-bottom d-flex align-items-center justify-content-between"> <!-- "Titulo" -->
+                        <h2 class="fs-5 fw-bold mb-0">
+                            Suprimentos
+                        </h2>
+                    </div>
+                    <div class="card-body">
+                        <div class="d-flex align-items-center justify-content-between border-bottom pb-3">  <!-- "Número de encomendas" -->
+                            <div>
+                                <div class="h6 mb-0 d-flex align-items-center">
+                                    Número de encomendas
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center fw-bold" style="white-space: nowrap">  <!-- Inserido "nowrap" p/impedir quebra em 2 linhas-->
+                                {{ grupo.NumeroEncomendas }}
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-between border-bottom py-3">  <!-- "Custo de frete no período" -->
+                            <div>
+                                <div class="h6 mb-0 d-flex align-items-center">
+                                    Custo de frete no período
+                                </div>
+                                <div class="small card-stats">
+                                    ($)
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center fw-bold" style="white-space: nowrap">  <!-- Inserido "nowrap" p/impedir quebra em 2 linhas-->
+                                {{ grupo.CustoFrete }}
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-between border-bottom py-3">  <!-- "Quebras de estoque" -->
+                            <div>
+                                <div class="h6 mb-0 d-flex align-items-center">
+                                    Quebras de estoque
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center fw-bold" style="white-space: nowrap">  <!-- Inserido "nowrap" p/impedir quebra em 2 linhas-->
+                                {{ grupo.QuebrasDeEstoque }}
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-between pt-3">  <!-- "Nível de serviço do suprimento" -->
+                            <div>
+                                <div class="h6 mb-0 d-flex align-items-center">
+                                    Nível de serviço do suprimento
+                                </div>
+                                <div class="small card-stats">
+                                    ($)
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center fw-bold" style="white-space: nowrap">  <!-- Inserido "nowrap" p/impedir quebra em 2 linhas-->
+                                {{ grupo.NivelServiçoSuprimentos }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-xl-4">
+            <div class="col-12 px-0 mb-4">
+                <div class="card border-0 shadow">   <!-- Card "RESULTADO" -->
+                    <div class="card-header border-bottom d-flex align-items-center justify-content-between"> <!-- "Titulo" -->
+                        <h2 class="fs-5 fw-bold mb-0">
+                            Resultado
+                        </h2>
+                    </div>
+                    <div class="card-body">
+                        <div class="d-flex align-items-center justify-content-between border-bottom pb-3">  <!-- "Ganho potencial" -->
+                            <div>
+                                <div class="h6 mb-0 d-flex align-items-center">
+                                    Ganho potencial
+                                </div>
+                                <div class="small card-stats">
+                                    ($)
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center fw-bold" style="white-space: nowrap">  <!-- Inserido "nowrap" p/impedir quebra em 2 linhas-->
+                                {{ grupo.GanhoPotencial }}
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-between border-bottom pb-3">  <!-- "Custo gerenciado" -->
+                            <div>
+                                <div class="h6 mb-0 d-flex align-items-center">
+                                    Custo gerenciado
+                                </div>
+                                <div class="small card-stats">
+                                    ($)
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center fw-bold" style="white-space: nowrap">  <!-- Inserido "nowrap" p/impedir quebra em 2 linhas-->
+                                {{ grupo.CustoGerenciado }}
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-between border-bottom py-3">  <!-- "Custo fixo" -->
+                            <div>
+                                <div class="h6 mb-0 d-flex align-items-center">
+                                    Custo fixo
+                                </div>
+                                <div class="small card-stats">
+                                    ($)
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center fw-bold" style="white-space: nowrap">  <!-- Inserido "nowrap" p/impedir quebra em 2 linhas-->
+                                {{ grupo.CustoFixo }}
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-between border-bottom py-3">  <!-- "Lucro" -->
+                            <div>
+                                <div class="h6 mb-0 d-flex align-items-center">
+                                    Lucro
+                                </div>
+                                <div class="small card-stats">
+                                    ($)
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center fw-bold" style="white-space: nowrap">  <!-- Inserido "nowrap" p/impedir quebra em 2 linhas-->
+                                {{ grupo.Lucro }}
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-between pt-3">  <!-- "Lucratividade" -->
+                            <div>
+                                <div class="h6 mb-0 d-flex align-items-center">
+                                    Lucratividade
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center fw-bold" style="white-space: nowrap">  <!-- Inserido "nowrap" p/impedir quebra em 2 linhas-->
+                                {{ grupo.Lucratividade }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-12 mt-2 mb-8">
+        <div class="card border-light shadow-sm">    <!-- HISTÓRICO -->
+            <div class="card-header">    <!-- Título -->
+                <div class="row align-items-center">
+                    <div class="col text-center">
+                        <h2 class="h4"><b>Histórico</b></h2>
+                    </div>
+                </div>
+            </div>
+            <div class="table-responsive">
+                <table class="table align-items-center table-flush">
+                    <thead class="thead-light">    <!-- Cabeçalho da tabela" -->
+                        <tr>
+                            <th scope="col" style="text-align: left">Dia</th>
+                            <th scope="col" style="text-align: right">Recebido</th>
+                            <th scope="col" style="text-align: right">Saldo<br>Inicial</th>
+                            <th scope="col" style="text-align: right">A<br>Receber</th>
+                            <th scope="col" style="text-align: right">Quant<br>Compra</th>
+                            <th scope="col" style="text-align: right">Prazo</th>
+                            <th scope="col" style="text-align: right">Demanda</th>
+                            <th scope="col" style="text-align: right">Vendido</th>
+                            <th scope="col" style="text-align: right">Saldo<br>Final</th>
+                            <th scope="col" style="text-align: right">Estoque<br>Médio</th>
+                        </tr>
+                    </thead>
+                    <tbody>                         <!-- Corpo da tabela" -->
+                        {% for umDia in historico %}
+                            <tr>
+                                <th scope="row" style="text-align: left">{{ umDia.Dia }}</th>
+                                <td style="text-align: right">{{ umDia.Recebido }}</td>
+                                <td style="text-align: right">{{ umDia.SaldoInicial }}</td>
+                                <td style="text-align: right">{{ umDia.AReceber }}</td>
+                                <td style="text-align: right">{{ umDia.Comprado      | default_if_none:'' }}</td>
+                                <td style="text-align: right">{{ umDia.Prazo         | default_if_none:'' }}</td>
+                                <td style="text-align: right">{{ umDia.Demanda       | default_if_none:'' }}</td>
+                                <td style="text-align: right">{{ umDia.Vendido       | default_if_none:'' }}</td>
+                                <td style="text-align: right">{{ umDia.SaldoFinal    | default_if_none:'' }}</td>
+                                <td style="text-align: right">{{ umDia.SaldoMedioDia | default_if_none:'' }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+{% else %}
+    <p>Não existe o item.</p>
+{% endif %}
+
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}

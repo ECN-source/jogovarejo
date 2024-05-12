@@ -1,0 +1,103 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Jogar {% endblock %} 
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+{% if grupos %}
+
+    {% if messages %}    <!-- Exibição de mensagem ao usuário posterior à edição  -->
+    <div class="messages">
+        {% for message in messages %}
+            {% if message.tags == "success" %} <div class ="h6" style="color: green">{{ message }}</div> {% endif %}
+            {% if message.tags == "error" %}   <div class ="h6" style="color: red"  >{{ message }}</div> {% endif %}
+            <!--  <div {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</div>-->
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    <div class="col-12 px-0 mb-4">   <!-- Indicação de qual é a FASE" -->
+        <div class="mb-4">
+            <label class="fs-4 fw-extrabold mb-0">Fase {{ fase }}</label>
+        </div>
+    </div>
+
+    <div class="row mt-2 mb-10">
+        {% for grupo in grupos %}
+            <div class="col-12 col-xl-3">    <!-- SITUACAO DE UM GRUPO" -->
+                <div class="col-12 px-0">
+                    <label class="fs-5 fw-extrabold mb-0">   <!-- Titulo "NOME ITEM" -->
+                        {% if fase == 1 %}
+                            <a href="{% url 'jogovarejo:detalheGrupoFase1' grupo.Numero %}">{{ grupo.Nome }}</a>
+                        {% endif %}
+                        {% if fase == 2 %}
+                            <a href="{% url 'jogovarejo:detalheGrupoFase2' grupo.Numero %}">{{ grupo.Nome }}</a>
+                        {% endif %}
+                        {% if fase == 3 %}
+                            <a href="{% url 'jogovarejo:detalheGrupoFase3' grupo.Numero %}">{{ grupo.Nome }}</a>
+                        {% endif %}
+                    </label>
+                </div>
+                <div class="col-12 px-0 mb-1">
+                    <div class="card border-0 shadow">   <!-- Card "MOVIMENTAÇÃO" -->
+                        <div class="card-body">
+                            <div class="d-flex align-items-center justify-content-between border-bottom pb-1">   <!-- "Situação Fase 1" -->
+                                {% if grupo.Fase1Ok == True %}
+                                    <div class="h6 mb-0 d-flex align-items-center" style="color: green">
+                                        Fase 1
+                                    </div>
+                                    <div class="d-flex align-items-center fw-bold" style="color: green">
+                                        Ok
+                                    </div>
+                                {% else %}
+                                    <div class="h6 mb-0 d-flex align-items-center" style="color: red">
+                                        Fase 1
+                                    </div>
+                                    <div class="d-flex align-items-center fw-bold" style="color: red">
+                                        Pendente
+                                    </div>
+                                {% endif %}
+                            </div>
+                            <div class="d-flex align-items-center justify-content-between border-bottom pb-1">  <!-- "Grupo operador" -->
+                                <div class="h6 mb-0 d-flex align-items-center">
+                                    Grupo operador
+                                </div>
+                                <div class="d-flex align-items-center fw-bold">
+                                    {{ grupo.GrupoOperador }}
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center justify-content-between pt-1">   <!-- "Simulolu até..." -->
+                                {% if grupo.Fase2DoGrupoComoOperadorOk == True %}
+                                    <div class="h6 mb-0 d-flex align-items-center" style="color: green">
+                                        Fase 2
+                                    </div>
+                                    <div class="d-flex align-items-center fw-bold" style="color: green">
+                                        Ok
+                                    </div>
+                                {% else %}
+                                    <div class="h6 mb-0 d-flex align-items-center">
+                                        Simulou até
+                                    </div>
+                                    <div class="d-flex align-items-center fw-bold">
+                                        {{ grupo.DiaCorrenteDoGrupoComoOperador }}
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+{% else %}
+    <p>Não existem grupos.</p>
+{% endif %}
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}
