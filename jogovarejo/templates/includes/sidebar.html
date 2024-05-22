@@ -46,98 +46,111 @@
             </li>
 
             {% if request.user.username == 'professor' %}
-            <li class="nav-item {% if tela == 'professor' %} active {% endif %}">   <!-- Botao "JOGAR" -->
-                <a href="{% url 'jogovarejo:index' %}" class="nav-link">
-                    <span class="sidebar-icon">
-                        <svg class="icon icon-xs me-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M6.79 5.093A.5.5 0 0 0 6 5.5v5a.5.5 0 0 0 .79.407l3.5-2.5a.5.5 0 0 0 0-.814z"/>
-                            <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm15 0a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1z"/>
-                        </svg>
-                    </span>
-                    <span class="sidebar-text">Jogar</span>
-                </a>
-            </li>
+                <li class="nav-item {% if tela == 'professor' %} active {% endif %}">   <!-- Botao "JOGAR" -->
+                    <a href="{% url 'jogovarejo:index' %}" class="nav-link">
+                        <span class="sidebar-icon">
+                            <svg class="icon icon-xs me-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M6.79 5.093A.5.5 0 0 0 6 5.5v5a.5.5 0 0 0 .79.407l3.5-2.5a.5.5 0 0 0 0-.814z"/>
+                                <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm15 0a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1z"/>
+                            </svg>
+                        </span>
+                        <span class="sidebar-text">Jogar</span>
+                    </a>
+                </li>
+            {% endif %}
+
+            {% if request.user.username == 'professor' %}
+                <li class="nav-item {% if tela == 'decisoes' %} active {% endif %}">   <!-- Botao "JOGAR" -->
+                    <a href="{% url 'jogovarejo:decisoesDosGrupos' %}" class="nav-link">
+                        <span class="sidebar-icon">
+                            <svg class="icon icon-xs me-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2z"/>
+                                <path d="M7 5.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5m-1.496-.854a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 1 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0M7 9.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5m-1.496-.854a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 0 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0"/>
+                            </svg>
+                        </span>
+                        <span class="sidebar-text">Decisões de compra</span>
+                    </a>
+                </li>
             {% endif %}
 
             {% if grupo %}
-            <li class="nav-item {% if tela == 'alunoFase1' %} active {% endif %}">   <!-- Botao "DETALHE FASE 1" -->
-                <a href="{% url 'jogovarejo:detalheGrupoFase1' grupo.Numero %}" class="nav-link">
-                    <span class="sidebar-icon">
-                        <svg class="icon icon-xs me-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M4 4a2 2 0 00-2 2v1h16V6a2 2 0 00-2-2H4z"></path>
-                            <path fill-rule="evenodd" d="M18 9H2v5a2 2 0 002 2h12a2 2 0 002-2V9zM4 13a1 1 0 011-1h1a1 1 0 110 2H5a1 1 0 01-1-1zm5-1a1 1 0 100 2h1a1 1 0 100-2H9z" clip-rule="evenodd"></path>
-                        </svg>
-                    </span>
-                    <span class="sidebar-text">Fase 1</span>
-                    </label>
-                </a>
-            </li>
+                <li class="nav-item {% if tela == 'alunoFormulacao' %} active {% endif %}">   <!-- Botao "DETALHE FORMULACAO" -->
+                    <a href="{% url 'jogovarejo:detalheFormulacao' grupo.Numero %}" class="nav-link">
+                        <span class="sidebar-icon">
+                            <svg class="icon icon-xs me-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M5.5 7a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1zM5 9.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5m0 2a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5"/>
+                                <path d="M9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.5zm0 1v2A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z"/>
+                            </svg>
+                        </span>
+                        <span class="sidebar-text">Formulação (Fase 1)</span>
+                        </label>
+                    </a>
+                </li>
             {% endif %}
 
             {% if grupo %}
             {% if fase >= 2 or request.user.username == 'professor'%}
-            <li class="nav-item {% if tela == 'alunoFase2' %} active {% endif %}">   <!-- Botao "DETALHE FASE 2" -->
-                <a href="{% url 'jogovarejo:detalheGrupoFase2' grupo.Numero %}" class="nav-link">
-                    <span class="sidebar-icon">
-                        <svg class="icon icon-xs me-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M4 4a2 2 0 00-2 2v1h16V6a2 2 0 00-2-2H4z"></path>
-                            <path fill-rule="evenodd" d="M18 9H2v5a2 2 0 002 2h12a2 2 0 002-2V9zM4 13a1 1 0 011-1h1a1 1 0 110 2H5a1 1 0 01-1-1zm5-1a1 1 0 100 2h1a1 1 0 100-2H9z" clip-rule="evenodd"></path>
-                        </svg>
-                    </span>
-                    <span class="sidebar-text">Fase 2</span>
-                    </label>
-                </a>
-            </li>
+                <li class="nav-item {% if tela == 'alunoSimulacao' %} active {% endif %}">   <!-- Botao "DETALHE SIMULACAO" -->
+                    <a href="{% url 'jogovarejo:detalheSimulacao' grupo.Numero %}" class="nav-link">
+                        <span class="sidebar-icon">
+                            <svg class="icon icon-xs me-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M0 12V4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2m6.79-6.907A.5.5 0 0 0 6 5.5v5a.5.5 0 0 0 .79.407l3.5-2.5a.5.5 0 0 0 0-.814z"/>
+                            </svg>
+                        </span>
+                        <span class="sidebar-text">Simulação (Fase 2)</span>
+                        </label>
+                    </a>
+                </li>
             {% endif %}
             {% endif %}
 
             {% if grupo %}
             {% if fase == 3 or request.user.username == 'professor' or grupo.Fase2DoGrupoComoOperadorOk == True %}
-            <li class="nav-item {% if tela == 'alunoFase3' %} active {% endif %}">   <!-- Botao "DETALHE FASE 3" -->
-                <a href="{% url 'jogovarejo:detalheGrupoFase3' grupo.Numero %}" class="nav-link">
-                    <span class="sidebar-icon">
-                        <svg class="icon icon-xs me-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M4 4a2 2 0 00-2 2v1h16V6a2 2 0 00-2-2H4z"></path>
-                            <path fill-rule="evenodd" d="M18 9H2v5a2 2 0 002 2h12a2 2 0 002-2V9zM4 13a1 1 0 011-1h1a1 1 0 110 2H5a1 1 0 01-1-1zm5-1a1 1 0 100 2h1a1 1 0 100-2H9z" clip-rule="evenodd"></path>
-                        </svg>
-                    </span>
-                    <span class="sidebar-text">Fase 3</span>
-                    </label>
-                </a>
-            </li>
+                <li class="nav-item {% if tela == 'alunoAvaliacao' %} active {% endif %}">   <!-- Botao "DETALHE AVALIACAO" -->
+                    <a href="{% url 'jogovarejo:detalheAvaliacao' grupo.Numero %}" class="nav-link">
+                        <span class="sidebar-icon">
+                            <svg class="icon icon-xs me-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2z"/>
+                                <path d="M7 5.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5m-1.496-.854a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 1 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0M7 9.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5m-1.496-.854a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 0 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0"/>
+                            </svg>                        
+                        </span>
+                        <span class="sidebar-text">Avaliação (Fase 3)</span>
+                        </label>
+                    </a>
+                </li>
             {% endif %}
             {% endif %}
 
             {% if request.user.username == 'professor' %}
-            <li class="nav-item">     <!-- Botao "AVANCAR FASE" -->
-                <div class="nav-link d-flex align-items-center">
-                    <form method="post" action="{% url 'jogovarejo:avancaFase'%}">
-                        {% csrf_token %}
-                        <span class="sidebar-icon">
-                            <svg class="icon icon-xs me-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z" />
-                            </svg>
-                        </span>
-                        <span class="sidebar-text">Avançar fase</span>
-                    </form>
-                </div>
-            </li>
+                <li class="nav-item">     <!-- Botao "AVANCAR FASE" -->
+                    <div class="nav-link d-flex align-items-center">
+                        <form id="avancaFase" method="post" action="{% url 'jogovarejo:avancaFase'%}">
+                            {% csrf_token %}
+                            <span class="sidebar-icon">
+                                <svg class="icon icon-xs me-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z" />
+                                </svg>
+                            </span>
+                            <span class="sidebar-text" onclick="document.getElementById('avancaFase').submit()">Avançar fase</span>
+                        </form>
+                    </div>
+                </li>
             {% endif %}
 
             {% if request.user.username == 'professor' %}
-            <li class="nav-item">     <!-- Botao "RETROCEDER FASE" -->
-                <div class="nav-link d-flex align-items-center">
-                    <form method="post" action="{% url 'jogovarejo:retrocedeFase'%}">
-                        {% csrf_token %}
-                        <span class="sidebar-icon">
-                            <svg class="icon icon-xs me-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                <path d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z" />
-                            </svg>
-                        </span>
-                        <span class="sidebar-text">Retroceder fase</span>
-                    </form>
-                </div>
-            </li>
+                <li class="nav-item">     <!-- Botao "RETROCEDER FASE" -->
+                    <div class="nav-link d-flex align-items-center">
+                        <form id="voltaFase" method="post" action="{% url 'jogovarejo:retrocedeFase'%}">
+                            {% csrf_token %}
+                            <span class="sidebar-icon">
+                                <svg class="icon icon-xs me-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z" />
+                                </svg>
+                            </span>
+                            <span class="sidebar-text" onclick="document.getElementById('voltaFase').submit()">Retroceder fase</span>
+                        </form>
+                    </div>
+                </li>
             {% endif %}
 
             <li role="separator" class="dropdown-divider mt-4 mb-3 border-gray-700"></li>
@@ -154,14 +167,23 @@
                 </a>
             </li>
 
-            <li class="nav-item">     <!-- Botao "LOGOUT" -->
-                <form method="POST" action="{% url 'logout' %}" class="nav-link align-items-center">
-                    {% csrf_token %}
-                    <button type="submit" class="btn btn-lg btn-secondary d-flex align-items-center justify-content-center btn-upgrade-pro">
-                        Logout
-                    </button>
-                </form>
-            </li>
+            {% if grupo %}
+            {% if tela == 'alunoSimulacao' or tela == 'alunoAvaliacao' %}
+                <li class="nav-item">     <!-- Indicação do DIA CORRENTE -->
+                    <div class="btn btn-lg btn-secondary d-flex align-items-center justify-content-center btn-upgrade-pro">
+                        <span>
+                            <svg class="icon icon-xs me-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+
+                                <path d="M10.854 7.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 9.793l2.646-2.647a.5.5 0 0 1 .708 0"/>
+                                <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5M1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4z"/>
+
+                            </svg>
+                        </span>
+                        <span>Dia {{ hoje }}</span>
+                    </div>
+                </li>
+            {% endif %}
+            {% endif %}
         </ul>
 
     </div>

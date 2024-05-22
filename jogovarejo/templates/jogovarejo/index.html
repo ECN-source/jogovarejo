@@ -31,13 +31,13 @@
                 <div class="col-12 px-0">
                     <label class="fs-5 fw-extrabold mb-0">   <!-- Titulo "NOME ITEM" -->
                         {% if fase == 1 %}
-                            <a href="{% url 'jogovarejo:detalheGrupoFase1' grupo.Numero %}">{{ grupo.Nome }}</a>
+                            <a href="{% url 'jogovarejo:detalheFormulacao' grupo.Numero %}">{{ grupo.Nome }}</a>
                         {% endif %}
                         {% if fase == 2 %}
-                            <a href="{% url 'jogovarejo:detalheGrupoFase2' grupo.Numero %}">{{ grupo.Nome }}</a>
+                            <a href="{% url 'jogovarejo:detalheSimulacao' grupo.Numero %}">{{ grupo.Nome }}</a>
                         {% endif %}
                         {% if fase == 3 %}
-                            <a href="{% url 'jogovarejo:detalheGrupoFase3' grupo.Numero %}">{{ grupo.Nome }}</a>
+                            <a href="{% url 'jogovarejo:detalheAvaliacao' grupo.Numero %}">{{ grupo.Nome }}</a>
                         {% endif %}
                     </label>
                 </div>

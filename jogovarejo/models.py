@@ -276,4 +276,4 @@ class IndicadoresDoGrupo (Grupo):
         if self.CapitalEstoqueMedio == 0: 
             return Decimal (0)
         else:
-            return (self.Lucro / self.CapitalEstoqueMedio).quantize (Decimal('1'), ROUND_HALF_UP)
+            return (self.Lucro / self.CapitalEstoqueMedio).quantize (Decimal('0.1'), ROUND_HALF_UP)

@@ -24,15 +24,11 @@ from jogovarejo import views
 router = routers.DefaultRouter()
 router.register (r'indicadores', views.IndicadoresViewSet)
 router.register (r'grupos', views.GruposViewSet)
-# router.register (r'grupos', views.GruposViewSet, basename='grupo')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('authentication.urls')), # Auth routes - login / register
-    path('', include('jogovarejo.urls')),
-    
-    path('', include(router.urls)),
-    # path('api/', include((router.urls, 'jogovarejo'), namespace='api')),
-    # path('api/', include(router.urls, namespace='api')),
-    path('api-auth/', include('rest_framework.urls', namespace='rest_framework')) # caminho p/login na API
+    path('api/', include(router.urls)),
+    path('api-auth/', include('rest_framework.urls', namespace='rest_framework')), # caminho p/login na API
+    path('', include('jogovarejo.urls')), # Essa linha precisa ser a última porque ela contém a "re_path (...., views.pages, ....)" (que trata as URLs inexistentes)       
 ]

@@ -1,0 +1,55 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Jogar Avaliação {% endblock %} 
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+{% if decisoes %}
+
+    <div class="col-12 mt-2 mb-8">
+        <div class="card border-light shadow-sm">    <!-- HISTÓRICO -->
+            <div class="card-header">    <!-- Título -->
+                <div class="row align-items-center">
+                    <div class="col text-center">
+                        <h2 class="h4"><b>Decisões de Compra dos Grupos</b></h2>
+                    </div>
+                </div>
+            </div>
+
+            <div class="table-responsive">
+                <table class="table align-items-center table-flush">
+                    <thead class="thead-light">    <!-- Cabeçalho da tabela" -->
+                        <tr>
+                            {% for elemento in decisoes.0 %}  <!-- Observa que aqui não posso acessar elementos da lista como no Python" -->
+                                <th scope="col" style="text-align: right">{{ elemento }}</th>
+                            {% endfor %}
+                        </tr>
+                    </thead>
+                    <tbody>                        <!-- Corpo da tabela" -->
+                        {% for umaLinha in decisoes %}
+                            {% if not forloop.first %}
+                                <tr>
+                                    {% for elemento in umaLinha %}
+                                        <td style="text-align: right">{{ elemento }}</td>
+                                    {% endfor %}
+                                </tr>
+                            {% endif %}
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+{% else %}
+    <p>Ocorreu algo errado.</p>
+{% endif %}
+
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}

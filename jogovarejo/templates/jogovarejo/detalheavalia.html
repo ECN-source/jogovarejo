@@ -1,6 +1,6 @@
 {% extends "layouts/base.html" %}
 
-{% block title %} Jogar Fase 3 {% endblock %} 
+{% block title %} Jogar Avaliação {% endblock %} 
 
 <!-- Specific Page CSS goes HERE  -->
 {% block stylesheets %}{% endblock stylesheets %}
@@ -9,11 +9,11 @@
 
 {% if grupo %} <!-- "grupo" é o grupo operador-->
 
-    <div class="col-12 px-0 mb-4">   <!-- Indicação de qual é o GRUPO" -->
-        <div class="mb-4">
-            <label class="fs-4 fw-extrabold mb-0">{{ grupo.Nome }} - Fase {{ fase }}</label>
-        </div>
+    <div class="col-12 px-0 mb-3">   <!-- Indicação de qual é o GRUPO" -->
+        <label class="fs-4 fw-extrabold mb-0">{{ grupo.Nome }}</label>
     </div>
+    <p class="lead">Estamos na <b>Fase 3</b> (ou ao menos você já concluiu a Fase 2). Se recoloque no papel de gerente e avalie os resultados produzidos pelo sistema que você projetou na Fase 1,
+        analizando indicadores e histórico abaixo. Conclua preenchendo o relatório de encerramento. Caso seu operador não tenha terminado a Fase 2 você terá que aguardar.</p>
 
     <div class="row mb-2">    <!-- Titulo "Situação corrente" -->
         <div class="col-12 px-0 text-center">

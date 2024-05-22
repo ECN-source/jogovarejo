@@ -1,6 +1,6 @@
 {% extends "layouts/base.html" %}
 
-{% block title %} Jogar Fase 1 {% endblock %} 
+{% block title %} Jogar Formulação {% endblock %} 
 
 <!-- Specific Page CSS goes HERE  -->
 {% block stylesheets %}{% endblock stylesheets %}
@@ -9,11 +9,13 @@
 
 {% if grupo %}
 
-    <div class="col-12 px-0 mb-4">   <!-- Indicação de qual é o GRUPO" -->
-        <div class="mb-4">
-            <label class="fs-4 fw-extrabold mb-0">{{ grupo.Nome }} - Fase {{ fase }}</label>
-        </div>
+    <div class="col-12 px-0 mb-3">   <!-- Indicação de qual é o GRUPO" -->
+        <label class="fs-4 fw-extrabold mb-0">{{ grupo.Nome }}</label>
     </div>
+    {% if fase == 1 %}
+        <p class="lead">Estamos na <b>Fase 1</b>. Escreva nos campos "quando comprar" e "quanto comprar" abaixo suas "instruções ao operador", que deem 
+            forma a sua proposta de sistema de reposição do estoque para o caso proposto. Conclua teclando em "salvar".</p>
+    {% endif %}
 
     <div class="row mt-4 mb-2">
         <div class="col-12 px-0 text-center">

@@ -9,10 +9,10 @@
                 <li class="nav-item dropdown ms-lg-3">
                     <a class="nav-link dropdown-toggle pt-1 px-0" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         <div class="media d-flex align-items-center">
-                            <div class="media-body ms-2 text-dark align-items-center d-none d-lg-block">
+                            <div class="media-body ms-2 text-dark align-items-center d-none d-lg-block text-end">
                                 <span class="mb-0 font-mediun fw-bold text-gray-900">
                                     <h1 class="display-5">
-                                        Usuário:<br>{{ request.user.username }}
+                                        Usuário: {{ request.user.username }} <br>Fase {{ fase }}
                                     </h1>
                                 </span>
                             </div>

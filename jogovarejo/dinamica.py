@@ -1,6 +1,7 @@
 from django.db.models import Sum
-from jogovarejo.models import Controle, Grupo, Sorteado, Movimento, Compra
 from decimal import Decimal, ROUND_HALF_UP
+
+from jogovarejo.models import Controle, Grupo, Sorteado, Movimento, Compra
 
 
 def InicializaNovoDia (grGerente, diaCorrente, SaldoFinalDiaCorrente):

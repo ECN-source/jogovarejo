@@ -19,7 +19,7 @@ class IndicadoresSerializer (serializers.HyperlinkedModelSerializer):
                   # Atendimento aos Clientes:
                   "ClientesAtendidos", "Ganho", "ClientesPerdidos", "GanhoPerdido", "NivelServicoCliente", 
                   # Estoque Médio:
-                  "EstqMedNãoArredond", "EstoqueMedio", "CoberturaEstoqueMedio", "CapitalEstoqueMedio", "Giro", 
+                  "EstoqueMedio", "CoberturaEstoqueMedio", "CapitalEstoqueMedio", "CustoEstocar", "Giro", 
                   # Suprimentos:
                   "EstoqueMaximo", "CoberturaEstoqueMaximo", "CapitalEstoqueMaximo", 
                   # Suprimentos:
