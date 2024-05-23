@@ -41,8 +41,6 @@ if IS_HEROKU_APP:
 else:
     ALLOWED_HOSTS = []
 
-ALLOWED_HOSTS = []
-
 
 # Application definition
 
