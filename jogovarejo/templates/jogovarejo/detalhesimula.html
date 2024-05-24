@@ -134,12 +134,12 @@
                     {% endif %}
                     <div class ="h6" style="color: green">   <!-- Informando "SIMULAÇÃO CONCLUIDA" -->
                         <p></p>
-                        <p class="lead">Voce já pode iniciar a <b>Fase 3</b>, começando a avaliar os resultados da simulação do uso do seu sistema pelo seu operador.</p>
+                        <p class="lead">Voce concluiu a <b>Fase 2</b>, já pode iniciar a <b>Fase 3</b>.</p>
                     </div>
                 {% endif %}
 
                 {% if grupo.DiaCorrenteDoGrupoComoOperador > 1 %}
-                <div class="col-12 col-xl-6">   <!-- Botao "RETROCEDER" -->
+                <div class="col-12 col-xl-6 mb-4">   <!-- Botao "RETROCEDER" -->
                     <form method="post" action="{% url 'jogovarejo:retrocedeUmdia' %}">
                         {% csrf_token %}
                         <input type="hidden" name="numGrupo" value="{{ grupo.Numero }}"> <!-- "grupo" é o grupo operador-->

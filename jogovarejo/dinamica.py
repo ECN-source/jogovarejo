@@ -42,7 +42,7 @@ def ProcessaUmDia (grGerente, decisaoDeCompra):
         InicializaNovoDia (grGerente, diaCorrente, movi.SaldoFinal) 
         return "Dia processado com sucesso."
     else:
-        return "Dia processado com sucesso. Simulação concluida."
+        return "Dia processado com sucesso. Simulação finalizada."
 
 
 def RetrocedeUmDia (grGerente):
