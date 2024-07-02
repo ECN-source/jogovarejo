@@ -1,7 +1,9 @@
 from django.core.management.base import BaseCommand
 from django.contrib.auth.models import User
+from django.db.models import Avg
 
 from jogovarejo.models import Controle, Grupo, Sorteado, Movimento, Compra
+from jogovarejo.sorteio import sortear
 
 
 class Command (BaseCommand):
@@ -16,7 +18,7 @@ class Command (BaseCommand):
         Grupo.objects.all().delete()
         Controle.objects.all().delete()
         User.objects.all().delete()
-        self.stdout.write (self.style.SUCCESS ('1 Zerou conteúdo do banco de dados'))
+        self.stdout.write (self.style.SUCCESS ('1. Zerou conteúdo do banco de dados'))
         
         # Insere usuarios:
         User.objects.create_superuser ('professor', email='professor@examplo.com', password='xadrez')
@@ -32,12 +34,12 @@ class Command (BaseCommand):
         User.objects.create_user      ('grupo10',   password='janela')
         User.objects.create_user      ('grupo11',   password='livro')
         User.objects.create_user      ('grupo12',   password='mesa')
-        self.stdout.write (self.style.SUCCESS ('2 Usuários do jogo recriados'))
+        self.stdout.write (self.style.SUCCESS ('2. Usuários do jogo recriados'))
 
         # Refaz tabela de Controle:
         contr = Controle (Nome='Ativo')
         contr.save() 
-        self.stdout.write (self.style.SUCCESS ('3 Tabela de Controle refeita'))
+        self.stdout.write (self.style.SUCCESS ('3. Tabela de Controle refeita'))
 
         # Refaz tabela de Itens (ou grupos):
         grupo1 = Grupo  (Numero=1, Nome='Grupo 1',   Ativo=True)
@@ -64,7 +66,7 @@ class Command (BaseCommand):
         grupo11.save() 
         grupo12 = Grupo (Numero=12, Nome='Grupo 12', Ativo=False)
         grupo12.save() 
-        self.stdout.write (self.style.SUCCESS ('4 Tabela de Grupos refeita'))
+        self.stdout.write (self.style.SUCCESS ('4. Tabela de Grupos refeita'))
 
         # Atribui grupos operadores:
         grupo1.GrupoOperador = grupo2
@@ -91,7 +93,7 @@ class Command (BaseCommand):
         grupo11.save() 
         grupo12.GrupoOperador = grupo12
         grupo12.save() 
-        self.stdout.write (self.style.SUCCESS ('5 Grupos operadores atribuidos'))
+        self.stdout.write (self.style.SUCCESS ('5. Grupos operadores atribuidos'))
 
         # Inicializa tabela de movimentos dos grupos:
         movi = Movimento (Grupo=grupo1,  Dia=1, Recebido=0, AReceber=0, SaldoInicial=80)
@@ -118,4 +120,19 @@ class Command (BaseCommand):
         movi.save() 
         movi = Movimento (Grupo=grupo12, Dia=1, Recebido=0, AReceber=0, SaldoInicial=80)
         movi.save() 
-        self.stdout.write (self.style.SUCCESS ('6 Tabela de Movimentos inicializada'))
+        self.stdout.write (self.style.SUCCESS ('6. Tabela de Movimentos inicializada'))
+
+        # Sorteia e grava novos valores:
+        duracao = Controle.objects.filter (Nome='Ativo').first().Duracao
+        for i in range (1, duracao+1):
+            prazo, demanda = sortear()
+            sorte = Sorteado (Dia=i, PrazoSorteado=prazo, DemandaSorteada=demanda)
+            sorte.save ()
+        self.stdout.write (self.style.SUCCESS ('7. Dados sorteados e gravados para {} dias'.format(duracao)))
+
+        self.stdout.write (self.style.SUCCESS ('Banco de dados reinicializado como sucesso.'))
+
+        prazoMedio   = Sorteado.objects.aggregate (Avg('PrazoSorteado'))   ['PrazoSorteado__avg']
+        demandaMedia = Sorteado.objects.aggregate (Avg('DemandaSorteada')) ['DemandaSorteada__avg']
+        self.stdout.write (self.style.SUCCESS ('Demanda média: {} unidades'.format(round(demandaMedia,2))))
+        self.stdout.write (self.style.SUCCESS ('Prazo médio: {} dias'.format(round(prazoMedio,2))))
